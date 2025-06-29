@@ -1,0 +1,307 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+      circle at 25% 25%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(79, 172, 254, 0.15) 0%,
+      transparent 40%
+    );
+  z-index: -1;
+  animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-10px, -10px) scale(1.02);
+  }
+  66% {
+    transform: translate(10px, 5px) scale(0.98);
+  }
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* アプリケーションヘッダー */
+.app-header {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.logo {
+  height: 4em;
+  padding: 0.5rem;
+  will-change: filter;
+  transition: all 300ms ease;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 20px rgba(100, 108, 255, 0.6));
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 20px rgba(97, 218, 251, 0.6));
+  animation: logo-pulse 2s ease-in-out infinite;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes logo-pulse {
+  0%,
+  100% {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 20px rgba(97, 218, 251, 0.6));
+  }
+  50% {
+    transform: scale(1.15) rotate(-2deg);
+    filter: drop-shadow(0 0 30px rgba(97, 218, 251, 0.8));
+  }
+}
+
+/* フローティング粒子エフェクト */
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: floatUp 8s linear infinite;
+}
+
+.particle:nth-child(odd) {
+  background: rgba(79, 172, 254, 0.4);
+  animation-duration: 10s;
+}
+
+.particle:nth-child(3n) {
+  background: rgba(0, 242, 254, 0.3);
+  animation-duration: 12s;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* メインコンテンツエリア */
+.main-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 600px;
+}
+
+.card {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* フッターとテキストスタイル */
+.read-the-docs {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.read-the-docs:hover {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  body::before {
+    animation-duration: 15s;
+  }
+
+  #root {
+    padding: 1rem;
+  }
+
+  .app-header {
+    top: 1rem;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    height: 3em;
+  }
+
+  .card {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .floating-particles .particle {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .logo {
+    height: 2.5em;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+  }
+
+  body::before {
+    background-image: radial-gradient(
+        circle at 25% 25%,
+        rgba(255, 255, 255, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba(255, 255, 255, 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 50% 10%,
+        rgba(79, 172, 254, 0.1) 0%,
+        transparent 40%
+      );
+  }
+
+  .logo {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .read-the-docs {
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.02);
+  }
+}
